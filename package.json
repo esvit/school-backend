@@ -1,0 +1,116 @@
+{
+  "name": "school-backend",
+  "version": "0.0.0",
+  "description": "",
+  "author": "Vitalii Savchuk",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=3.8"
+  },
+  "scripts": {
+    "start": "node dist/bin/www.js",
+    "build": "rimraf dist && cross-env NODE_ENV=production babel src -d dist -s",
+    "dev": "nodemon src/bin/www.js",
+    "test": "eslint --fix src && prettier --write \"src/**/*.js\""
+  },
+  "dependencies": {
+    "@koa/cors": "^2.2.1",
+    "bristol": "^0.3.3",
+    "http-status-codes": "^1.3.0",
+    "keyblade": "^0.3.2",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-compress": "^2.0.0",
+    "koa-dec-router": "0.0.4",
+    "koa-respond": "^1.0.1",
+    "koa-router": "^7.3.0",
+    "koa-send": "^4.1.2",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.13.6",
+    "palin": "^2.2.0",
+    "yenv": "^1.0.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-plugin-source-map-support": "^1.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.10.0",
+    "eslint-config-prettier": "^2.7.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.2.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "lint-staged": "^6.0.0",
+    "nodemon": "^1.14.12",
+    "prettier": "^1.7.4",
+    "rimraf": "^2.6.2",
+    "smid": "^0.1.1"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "jest"
+    ],
+    "extends": [
+      "standard",
+      "prettier",
+      "plugin:jest/recommended"
+    ],
+    "env": {
+      "jest/globals": true
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": true
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "js": "babel-node"
+    }
+  },
+  "babel": {
+    "sourceMaps": "both",
+    "plugins": [
+      "transform-decorators-legacy",
+      "transform-class-properties",
+      "transform-runtime",
+      "transform-object-rest-spread"
+    ],
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ],
+    "env": {
+      "production": {
+        "plugins": [
+          "source-map-support"
+        ],
+        "ignore": [
+          "**/__tests__/**"
+        ]
+      }
+    }
+  }
+}
